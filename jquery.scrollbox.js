@@ -19,6 +19,7 @@ $.fn.scrollbox = function(config) {
     speed: 32,              // Delay after each single step (in milliseconds)
     switchItems: 1,         // Items to switch after each scroll event
     direction: 'vertical',
+    rtl: false,
     distance: 'auto',
     autoPlay: true,
     onMouseOverPause: true,
@@ -174,7 +175,7 @@ $.fn.scrollbox = function(config) {
           return;
         }
         if (config.autoPlay) {
-          nextScrollId = setTimeout(forward, config.delay * 1000);
+          nextScrollId = setTimeout(config.rtl ? backward : forward, config.delay * 1000);
         }
       }
     };
@@ -222,7 +223,7 @@ $.fn.scrollbox = function(config) {
     };
 
     if (config.autoPlay) {
-      nextScrollId = setTimeout(forward, config.startDelay * 1000);
+      nextScrollId = setTimeout(config.rtl ? backward : forward, config.startDelay * 1000);
     }
 
     // bind events for container
